@@ -3,14 +3,27 @@
 		<logo href="home.php" src="./view/images/logo.png" height="40" width="156" top="45" />
 	</pageTop>
 	<menu property="#{test->m_Menu}">
-		<menuItem id="account" type="account" property="#{test->m_Menu->menuItemList[0]}" href="account" />
-		<menuItem id="logout" type="logout" property="#{test->m_Menu->menuItemList[1]}" action="logoutClick();" />
-		<menuItem id="menu1" property="#{test->m_Menu->menuItemList[2]}" title="Page 1" href="page1">
-			<subMenuItem property="#{test->m_Menu->menuItemList[2]->subMenuItemList[0]}" title="Page 1 sub 1" href="page1sub1"></subMenuItem>
+		<menuItem id="account" type="account" href="account" />
+		<menuItem id="logout" type="logout" action="logoutClick();" />
+		<menuItem id="menu1" title="Page 1" href="page1">
+			<subMenuItem title="Page 1 sub 1" href="page1sub1"></subMenuItem>
 		</menuItem>
-		<menuItem id="menu2" property="#{test->m_Menu->menuItemList[3]}" title="Page 2" current="yes">
-			<subMenuItem property="#{test->m_Menu->menuItemList[3]->subMenuItemList[0]}" title="Page 2 sub 1" href="page2sub1"></subMenuItem>
-			<subMenuItem property="#{test->m_Menu->menuItemList[3]->subMenuItemList[1]}" title="Page 2 sub 2" href="page2sub2" current="yes"></subMenuItem>
+		<menuItem id="menu2" title="Page 2" current="yes">
+			<subMenuItem title="Page 2 sub 1" href="page2sub1"></subMenuItem>
+			<subMenuItem title="Page 2 sub 2" href="page2sub2" current="yes"></subMenuItem>
 		</menuItem>
 	</menu>
+	<!--
+	<content title="">
+		<panel>
+			<field title="">
+				<input />
+			</field>
+			<field title=""></field>
+		</panel>
+		<datagrid>
+			<column title=""></column>
+			<column title=""></column>
+		</datagrid>
+	</content> -->
 </view>
