@@ -19,4 +19,12 @@ $(document).ready(function() {
 						$('form').submit();
 						$('#action').remove();
 					});
+				});$(document).ready(function(){
+					$('#menu1').click(function(){
+						location = '?page=page1';
+					});
+				});$(document).ready(function(){
+					$('#menu2').click(function(){
+						location = '?page=page2';
+					});
 				});

@@ -3,10 +3,10 @@
 		<logo href="home.php" src="./view/images/logo.png" height="40" width="156" top="45" />
 	</pageTop>
 	<menu property="#{test->m_Menu}">
-		<menuItem id="account" type="account" property="#{test->m_Menu->menuItemList[0]}" href="?page=account" />
+		<menuItem id="account" type="account" property="#{test->m_Menu->menuItemList[0]}" href="account" />
 		<menuItem id="logout" type="logout" property="{test->m_Menu->menuItemList[1]}" action="logoutClick();" />
-		<menuItem id="menu1" property="{test->m_Menu->menuItemList[2]}" />
-		<menuItem id="menu2" property="{test->m_Menu->menuItemList[3]}">
+		<menuItem id="menu1" property="{test->m_Menu->menuItemList[2]}" title="Page 1" href="page1" />
+		<menuItem id="menu2" property="{test->m_Menu->menuItemList[3]}" title="Page 2" href="page2">
 			<subMenuItem property=""></subMenuItem>
 			<subMenuItem property=""></subMenuItem>
 		</menuItem>

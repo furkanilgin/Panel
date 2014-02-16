@@ -7,6 +7,7 @@ class MenuItem{
 	public $type;
 	public $url;
 	public $action;
+	public $title;
 	
 	public function getHtml(){
 	
@@ -16,9 +17,13 @@ class MenuItem{
 						<img id="'.$this->id.'" src="./libs/panel/images/shared/nav/nav_myaccount.gif" width="93" height="14" />
 					  </div>';
 		}
-		if($this->type == "logout"){
+		else if($this->type == "logout"){
 			$html .= '<div class="nav-divider">&nbsp;</div>
-						<a id="'.$this->id.'"><img src="./libs/panel/images/shared/nav/nav_logout.gif" />';
+						<a id="'.$this->id.'"><img src="./libs/panel/images/shared/nav/nav_logout.gif" /></a>';
+		}
+		else if($this->type == "default"){
+			$html .= '<ul class="select"><li><a href="?page='.$this->href.'"><b>'.$this->title.'</b></a>';
+			$html .= '</li></ul>';
 		}
 		
 		return $html;
@@ -38,7 +43,7 @@ class MenuItem{
 		else if(isset($this->href) && $this->href != ""){
 			$js = "$(document).ready(function(){
 					$('#".$this->id."').click(function(){
-						location = '".$this->href."';
+						location = '?page=".$this->href."';
 					});
 				});";
 		}

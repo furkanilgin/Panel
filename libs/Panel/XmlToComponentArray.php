@@ -34,11 +34,15 @@ class XmlToComponentArray{
 					$menuItemComponent = new MenuItem();
 					$menuItemComponent->id = $menuItem["id"];
 					$menuItemComponent->type = $menuItem["type"];
+					if($menuItem["type"] == ""){
+						$menuItemComponent->type = "default";
+					}
 					$menuItemComponent->property = $menuItem["property"];
 					$menuItemComponent->href = $menuItem["href"];
 					$menuItemComponent->action = $menuItem["action"];
+					$menuItemComponent->title = $menuItem["title"];
 					$component->menuItemList[] = $menuItemComponent;
-					if(!empty($menuItemComponent->type) && $menuItemComponent->type != ""){
+					if($menuItemComponent->type != "default"){
 						$rightMenuItemCount++;
 					}
 				}
