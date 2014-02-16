@@ -2,6 +2,8 @@
 require_once("./components/Inputtext.php");
 require_once("./components/Dropdown.php");
 require_once("./components/Button.php");
+require_once("./components/Pagetop.php");
+require_once("./components/Logo.php");
 
 class XmlToComponentArray{
 
@@ -10,6 +12,18 @@ class XmlToComponentArray{
 		$root = simplexml_load_string($xmlStr);
 		
 		foreach($root as $pageNode){
+			if($pageNode->getName() == "pagetop"){
+				$component = new Pagetop();
+				$component->property = (string) $pageNode["property"];
+				if(isset($pageNode->logo)){
+					$component->logo = new Logo();
+					$component->logo->url = $pageNode->logo["url"];
+					$component->logo->src = $pageNode->logo["src"];
+					$component->logo->height = $pageNode->logo["height"];
+					$component->logo->width = $pageNode->logo["width"];
+					$component->logo->top = $pageNode->logo["top"];
+				}
+			}
 			if($pageNode->getName() == "inputtext"){
 				$component = new Inputtext();
 				$component->id = (string) $pageNode["id"];
