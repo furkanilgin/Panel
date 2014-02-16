@@ -4,14 +4,20 @@ class Menu{
 
 	public $property;
 	public $menuItemList;
-	public $rightMenuItemCount;
 	
 	public function getHtml(){
 
 		$html = '<div class="nav-outer-repeat"><div class="nav-outer">';
 		
 		// account and logout buttons
-		$tmp_RightMenuItemCount = $this->rightMenuItemCount;
+		$rightMenuItemCount = 0;
+		foreach($this->menuItemList as $menuItem){
+			if($menuItem->type != "default"){
+				$rightMenuItemCount++;
+			}
+		}
+		
+		$tmp_RightMenuItemCount = $rightMenuItemCount;
 		if($tmp_RightMenuItemCount > 0){
 			$html .= '<div id="nav-right">';
 		}

@@ -8,6 +8,8 @@ class MenuItem{
 	public $url;
 	public $action;
 	public $title;
+	public $current;
+	public $subMenuItemList;
 	
 	public function getHtml(){
 	
@@ -19,10 +21,32 @@ class MenuItem{
 		}
 		else if($this->type == "logout"){
 			$html .= '<div class="nav-divider">&nbsp;</div>
-						<a id="'.$this->id.'"><img src="./libs/panel/images/shared/nav/nav_logout.gif" /></a>';
+						<a id="'.$this->id.'"><img src="./libs/panel/images/shared/nav/nav_logout.gif" style="cursor:pointer;"/></a>';
 		}
 		else if($this->type == "default"){
-			$html .= '<ul class="select"><li><a href="?page='.$this->href.'"><b>'.$this->title.'</b></a>';
+			// href
+			if(isset($this->href) && $this->href != ""){
+				$hrefStatement = 'href="?page='.$this->href.'"';
+			}
+			else{
+				$hrefStatement = 'href="javascript:void(0);"';
+			}
+			// current
+			if($this->current == "yes"){
+				$currentStatement = "current";
+			}
+			else{
+				$currentStatement = "select";
+			}
+			
+			$html .= '<ul class="'.$currentStatement.'"><li><a '.$hrefStatement.'><b>'.$this->title.'</b></a>';
+			if(isset($this->subMenuItemList)){
+				$html .= '<div class="select_sub show"><ul class="sub">';
+				foreach($this->subMenuItemList as $subMenuItem){
+					$html .= $subMenuItem->getHtml();
+				}
+				$html .= '</ul></div>';
+			}
 			$html .= '</li></ul>';
 		}
 		

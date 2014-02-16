@@ -1,11 +1,9 @@
 <?php
-require_once("./components/Inputtext.php");
-require_once("./components/Dropdown.php");
-require_once("./components/Button.php");
 require_once("./components/Pagetop.php");
 require_once("./components/Logo.php");
 require_once("./components/Menu.php");
 require_once("./components/MenuItem.php");
+require_once("./components/SubMenuItem.php");
 
 class XmlToComponentArray{
 
@@ -29,7 +27,8 @@ class XmlToComponentArray{
 			if($pageNode->getName() == "menu"){
 				$component = new Menu();
 				$component->property = (string) $pageNode["property"];
-				$rightMenuItemCount = 0;
+				
+				// menuItem
 				foreach($pageNode->menuItem as $menuItem){
 					$menuItemComponent = new MenuItem();
 					$menuItemComponent->id = $menuItem["id"];
@@ -41,36 +40,28 @@ class XmlToComponentArray{
 					$menuItemComponent->href = $menuItem["href"];
 					$menuItemComponent->action = $menuItem["action"];
 					$menuItemComponent->title = $menuItem["title"];
-					$component->menuItemList[] = $menuItemComponent;
-					if($menuItemComponent->type != "default"){
-						$rightMenuItemCount++;
+					$menuItemComponent->current = $menuItem["current"];
+					
+					//subMenuItem
+					foreach($menuItem->subMenuItem as $subMenuItem){
+						$subMenuItemComponent = new SubMenuItem();
+						$subMenuItemComponent->id = $subMenuItem["id"];
+						$subMenuItemComponent->type = $subMenuItem["type"];
+						$subMenuItemComponent->property = $subMenuItem["property"];
+						$subMenuItemComponent->href = $subMenuItem["href"];
+						$subMenuItemComponent->action = $subMenuItem["action"];
+						$subMenuItemComponent->title = $subMenuItem["title"];
+						$subMenuItemComponent->current = $subMenuItem["current"];
+						
+						// assign subMenuItems to menuItem
+						$menuItemComponent->subMenuItemList[] = $subMenuItemComponent;
 					}
+					
+					// assign menuItems to menu
+					$component->menuItemList[] = $menuItemComponent;
 				}
-				$component->rightMenuItemCount = $rightMenuItemCount;
 			}
-			if($pageNode->getName() == "inputtext"){
-				$component = new Inputtext();
-				$component->id = (string) $pageNode["id"];
-				$component->name = (string) $pageNode["name"];
-				$component->property = (string) $pageNode["property"];
-				$component->text = $_POST[(string)$component->id];
-			}
-			if($pageNode->getName() == "dropdown"){
-				$component = new Dropdown();
-				$component->id = (string) $pageNode["id"];
-				$component->name = (string) $pageNode["name"];
-				$component->property = (string) $pageNode["property"];
-				$component->change = (string) $pageNode["change"];
-				$component->selectedItem = $_POST[(string)$component->id];
-			}
-			if($pageNode->getName() == "button"){
-				$component = new Button();
-				$component->id = (string) $pageNode["id"];
-				$component->name = (string) $pageNode["name"];
-				$component->text = (string) $pageNode["text"];
-				$component->property = (string) $pageNode["property"];
-				$component->action = (string) $pageNode["action"];
-			}
+			
 			$componentArray[] = $component;
 		}
 		
