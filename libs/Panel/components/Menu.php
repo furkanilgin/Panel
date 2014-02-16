@@ -27,5 +27,10 @@ class Menu{
 	
 	public function getJS(){
 	
+		foreach($this->menuItemList as $menuItem){
+			$js .= $menuItem->getJS();
+		}
+		
+		return $js;
 	}
 }

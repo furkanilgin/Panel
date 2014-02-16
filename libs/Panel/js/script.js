@@ -9,4 +9,14 @@ $(document).ready(function() {
 	});
 	
 	CKEDITOR.replaceAll();
-});
+});$(document).ready(function(){
+					$('#account').click(function(){
+						location = '?page=account';
+					});
+				});$(document).ready(function(){
+					$('#logout').click(function(){
+						$('form').append('<input id="action" name="action" type="hidden" value="logoutClick();"  />');
+						$('form').submit();
+						$('#action').remove();
+					});
+				});

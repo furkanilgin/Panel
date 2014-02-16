@@ -7,4 +7,8 @@ class TestController{
 	public function load(){
 
 	}
+	
+	public function logoutClick(){
+		echo "logout clicked";
+	}
 }

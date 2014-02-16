@@ -32,9 +32,11 @@ class XmlToComponentArray{
 				$rightMenuItemCount = 0;
 				foreach($pageNode->menuItem as $menuItem){
 					$menuItemComponent = new MenuItem();
+					$menuItemComponent->id = $menuItem["id"];
 					$menuItemComponent->type = $menuItem["type"];
 					$menuItemComponent->property = $menuItem["property"];
 					$menuItemComponent->href = $menuItem["href"];
+					$menuItemComponent->action = $menuItem["action"];
 					$component->menuItemList[] = $menuItemComponent;
 					if(!empty($menuItemComponent->type) && $menuItemComponent->type != ""){
 						$rightMenuItemCount++;
