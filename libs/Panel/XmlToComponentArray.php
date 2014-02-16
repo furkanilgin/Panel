@@ -4,25 +4,43 @@ require_once("./components/Dropdown.php");
 require_once("./components/Button.php");
 require_once("./components/Pagetop.php");
 require_once("./components/Logo.php");
+require_once("./components/Menu.php");
+require_once("./components/MenuItem.php");
 
 class XmlToComponentArray{
 
 	public static function convert($xmlStr){
 	
 		$root = simplexml_load_string($xmlStr);
-		
+
 		foreach($root as $pageNode){
-			if($pageNode->getName() == "pagetop"){
+			if($pageNode->getName() == "pageTop"){
 				$component = new Pagetop();
 				$component->property = (string) $pageNode["property"];
 				if(isset($pageNode->logo)){
 					$component->logo = new Logo();
-					$component->logo->url = $pageNode->logo["url"];
+					$component->logo->href = $pageNode->logo["href"];
 					$component->logo->src = $pageNode->logo["src"];
 					$component->logo->height = $pageNode->logo["height"];
 					$component->logo->width = $pageNode->logo["width"];
 					$component->logo->top = $pageNode->logo["top"];
 				}
+			}
+			if($pageNode->getName() == "menu"){
+				$component = new Menu();
+				$component->property = (string) $pageNode["property"];
+				$rightMenuItemCount = 0;
+				foreach($pageNode->menuItem as $menuItem){
+					$menuItemComponent = new MenuItem();
+					$menuItemComponent->type = $menuItem["type"];
+					$menuItemComponent->property = $menuItem["property"];
+					$menuItemComponent->href = $menuItem["href"];
+					$component->menuItemList[] = $menuItemComponent;
+					if(!empty($menuItemComponent->type) && $menuItemComponent->type != ""){
+						$rightMenuItemCount++;
+					}
+				}
+				$component->rightMenuItemCount = $rightMenuItemCount;
 			}
 			if($pageNode->getName() == "inputtext"){
 				$component = new Inputtext();

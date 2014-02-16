@@ -26,6 +26,7 @@ class Framework{
 		
 		if(!isset($requestedPageConfiguration)){
 			require_once("./html/404.html");
+			require_once("./html/footer.html");
 			exit;
 		}
 	}
