@@ -4,6 +4,7 @@ class Panel{
 
 	public $property;
 	public $title;
+	public $fieldList;
 
 	public function getHtml(){
 
@@ -24,6 +25,35 @@ class Panel{
 							<td id="tbl-border-left"></td>
 							<td valign="top">
 								<div id="content-table-inner">';
+						
+		if(isset($this->panelItemList)){
+			
+			$panelItemCount = 0;
+			$fieldCount = 0;
+			$datagridCount = 0;
+			foreach($this->panelItemList as $panelItem){
+				if(get_class($panelItem) == 'Field'){
+					if($panelItemCount == 0){
+						$html .= '<table border="0" cellpadding="0" cellspacing="0"  id="id-form" style="margin-bottom:20px;">';
+					}
+					$html .= '<tr>
+							<th>'.$panelItem->title.':</th>
+							<td>'.$panelItem->getHtml().'</td>
+						</tr>';
+					$fieldCount++;
+				}
+				if(get_class($panelItem) == 'Datagrid'){
+					if($panelItemCount != 0){
+						$html .= '</table>';
+					}
+					$datagridCount++;
+				}	
+				$panelItemCount++;
+			}
+			if($fieldCount > 0 && $datagridCount == 0){
+				$html .= '</table>';
+			}
+		}
 								
 		$html .= '</div>
 							</td>

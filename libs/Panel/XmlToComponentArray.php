@@ -5,6 +5,8 @@ require_once("./components/Menu.php");
 require_once("./components/MenuItem.php");
 require_once("./components/SubMenuItem.php");
 require_once("./components/Panel.php");
+require_once("./components/Field.php");
+require_once("./components/Datagrid.php");
 
 class XmlToComponentArray{
 
@@ -66,6 +68,15 @@ class XmlToComponentArray{
 				$component = new Panel();
 				$component->property = (string) $pageNode["property"];
 				$component->title = $pageNode["title"];
+				foreach($pageNode->field as $field){
+					$fieldComponent = new Field();
+					$fieldComponent->title = $field["title"];
+					$component->panelItemList[] = $fieldComponent;
+				}
+				foreach($pageNode->datagrid as $datagrid){
+					$datagridComponent = new Datagrid();
+					$component->panelItemList[] = $datagridComponent;
+				}
 			}
 			
 			$componentArray[] = $component;
