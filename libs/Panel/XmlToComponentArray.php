@@ -4,6 +4,7 @@ require_once("./components/Logo.php");
 require_once("./components/Menu.php");
 require_once("./components/MenuItem.php");
 require_once("./components/SubMenuItem.php");
+require_once("./components/Panel.php");
 
 class XmlToComponentArray{
 
@@ -24,7 +25,7 @@ class XmlToComponentArray{
 					$component->logo->top = $pageNode->logo["top"];
 				}
 			}
-			if($pageNode->getName() == "menu"){
+			else if($pageNode->getName() == "menu"){
 				$component = new Menu();
 				$component->property = (string) $pageNode["property"];
 				
@@ -60,6 +61,11 @@ class XmlToComponentArray{
 					// assign menuItems to menu
 					$component->menuItemList[] = $menuItemComponent;
 				}
+			}
+			else if($pageNode->getName() == "panel"){
+				$component = new Panel();
+				$component->property = (string) $pageNode["property"];
+				$component->title = $pageNode["title"];
 			}
 			
 			$componentArray[] = $component;
