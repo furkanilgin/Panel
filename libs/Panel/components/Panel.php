@@ -46,6 +46,7 @@ class Panel{
 					if($panelItemCount != 0){
 						$html .= '</table>';
 					}
+					$html .= $panelItem->getHtml();
 					$datagridCount++;
 				}	
 				$panelItemCount++;

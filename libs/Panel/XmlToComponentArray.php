@@ -7,6 +7,9 @@ require_once("./components/SubMenuItem.php");
 require_once("./components/Panel.php");
 require_once("./components/Field.php");
 require_once("./components/Datagrid.php");
+require_once("./components/Column.php");
+require_once("./components/EditButton.php");
+require_once("./components/DeleteButton.php");
 
 class XmlToComponentArray{
 
@@ -75,6 +78,25 @@ class XmlToComponentArray{
 				}
 				foreach($pageNode->datagrid as $datagrid){
 					$datagridComponent = new Datagrid();
+					$datagridComponent->property = $datagrid["property"];
+					foreach($datagrid->column as $column){
+						$columnComponent = new Column();
+						$columnComponent->title = $column["title"];
+						$columnComponent->width = $column["width"];
+						$columnComponent->type = $column["type"];
+						$columnComponent->property = $column["property"];
+						foreach($column->editButton as $editButton){
+							$columnObject = new EditButton();
+							$columnObject->title = $editButton["title"];
+							$columnComponent->columnObjectList[] = $columnObject;
+						}
+						foreach($column->deleteButton as $deleteButton){
+							$columnObject = new DeleteButton();
+							$columnObject->title = $editButton["title"];
+							$columnComponent->columnObjectList[] = $columnObject;
+						}
+						$datagridComponent->columnList[] = $columnComponent;
+					}
 					$component->panelItemList[] = $datagridComponent;
 				}
 			}
