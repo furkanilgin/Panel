@@ -14,8 +14,10 @@
 		</menuItem>
 	</menu>
 	<panel title="Title" property="#{test->p_Panel}">
-		<input id="field1" name="field1" label="Field 1" />
-		<select id="field2" name="field2" change="selectChange();" label="Field 2" />
+		<input id="field1" name="field1" label="Field 1:" />
+		<select id="field2" name="field2" change="selectChange();" label="Field 2:" />
+		<file id="field3" name="field3" label="Field 3:" />
+		<button id="save" name="save" action="save();" />
 		<datagrid>
 			<column type="data" title="Column 1" width="25%" />
 			<column title="Column 2" width="25%">

@@ -12,6 +12,8 @@ require_once("./components/DeleteButton.php");
 require_once("./components/ImageLink.php");
 require_once("./components/Input.php");
 require_once("./components/Select.php");
+require_once("./components/File.php");
+require_once("./components/Button.php");
 
 class XmlToComponentArray{
 
@@ -82,7 +84,7 @@ class XmlToComponentArray{
 						$inputComponent->text = $_POST[(string)$inputComponent->name];;
 						$component->panelItemList[] = $inputComponent;
 					}
-					if($child->getName() == "select"){
+					else if($child->getName() == "select"){
 						$selectComponent = new Select();
 						$selectComponent->id = (string) $child["id"];
 						$selectComponent->name = (string) $child["name"];
@@ -90,6 +92,21 @@ class XmlToComponentArray{
 						$selectComponent->change = (string) $child["change"];
 						$selectComponent->selectedItem = $_POST[(string)$selectComponent->id];
 						$component->panelItemList[] = $selectComponent;
+					}
+					else if($child->getName() == "file"){
+						$fileComponent = new File();
+						$fileComponent->id = (string) $child["id"];
+						$fileComponent->name = (string) $child["name"];
+						$fileComponent->label = (string) $child["label"];
+						$component->panelItemList[] = $fileComponent;
+					}
+					else if($child->getName() == "button"){
+						$buttonComponent = new Button();
+						$buttonComponent->id = $child["id"];
+						$buttonComponent->name = $child["name"];
+						$buttonComponent->text = $child["text"];
+						$buttonComponent->action = $child["action"];
+						$component->panelItemList[] = $buttonComponent;
 					}
 					else if($child->getName() == "datagrid"){
 						foreach($pageNode->datagrid as $datagrid){
