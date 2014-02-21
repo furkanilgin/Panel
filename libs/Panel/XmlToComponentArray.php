@@ -11,6 +11,7 @@ require_once("./components/EditButton.php");
 require_once("./components/DeleteButton.php");
 require_once("./components/ImageLink.php");
 require_once("./components/Input.php");
+require_once("./components/Select.php");
 
 class XmlToComponentArray{
 
@@ -80,6 +81,15 @@ class XmlToComponentArray{
 						$inputComponent->label = $child["label"];
 						$inputComponent->text = $_POST[(string)$inputComponent->name];;
 						$component->panelItemList[] = $inputComponent;
+					}
+					if($child->getName() == "select"){
+						$selectComponent = new Select();
+						$selectComponent->id = (string) $child["id"];
+						$selectComponent->name = (string) $child["name"];
+						$selectComponent->label = (string) $child["label"];
+						$selectComponent->change = (string) $child["change"];
+						$selectComponent->selectedItem = $_POST[(string)$selectComponent->id];
+						$component->panelItemList[] = $selectComponent;
 					}
 					else if($child->getName() == "datagrid"){
 						foreach($pageNode->datagrid as $datagrid){
