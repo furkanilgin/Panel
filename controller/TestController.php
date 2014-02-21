@@ -14,6 +14,17 @@ class TestController{
 		$this->test->p_Panel->panelItemList[1]->items = array("1" => "city1", "2" => "city2", "3" => "city3");
 	}
 	
+	public function edit(){
+	
+		//$this->test->p_Panel->panelItemList[0]->text = "furkan";
+		echo $_POST["rowIndex"];
+	}
+	
+	public function delete(){
+	
+		echo $_POST["rowIndex"];
+	}
+	
 	public function save(){
 	
 		$this->test->p_Panel->panelItemList[2]->upload("./upload/");

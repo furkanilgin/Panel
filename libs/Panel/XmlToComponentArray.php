@@ -120,12 +120,16 @@ class XmlToComponentArray{
 								$columnComponent->property = $column["property"];
 								foreach($column->editButton as $editButton){
 									$columnObject = new EditButton();
+									$columnObject->id = $editButton["id"];
 									$columnObject->title = $editButton["title"];
+									$columnObject->action = $editButton["action"];
 									$columnComponent->columnObjectList[] = $columnObject;
 								}
 								foreach($column->deleteButton as $deleteButton){
 									$columnObject = new DeleteButton();
-									$columnObject->title = $editButton["title"];
+									$columnObject->id = $deleteButton["id"];
+									$columnObject->title = $deleteButton["title"];
+									$columnObject->action = $deleteButton["action"];
 									$columnComponent->columnObjectList[] = $columnObject;
 								}
 								foreach($column->imageLink as $imageLink){
