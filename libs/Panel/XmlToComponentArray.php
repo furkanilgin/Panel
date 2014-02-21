@@ -10,6 +10,7 @@ require_once("./components/Datagrid.php");
 require_once("./components/Column.php");
 require_once("./components/EditButton.php");
 require_once("./components/DeleteButton.php");
+require_once("./components/ImageLink.php");
 
 class XmlToComponentArray{
 
@@ -93,6 +94,11 @@ class XmlToComponentArray{
 						foreach($column->deleteButton as $deleteButton){
 							$columnObject = new DeleteButton();
 							$columnObject->title = $editButton["title"];
+							$columnComponent->columnObjectList[] = $columnObject;
+						}
+						foreach($column->imageLink as $imageLink){
+							$columnObject = new ImageLink();
+							$columnObject->href = $imageLink["href"];
 							$columnComponent->columnObjectList[] = $columnObject;
 						}
 						$datagridComponent->columnList[] = $columnComponent;

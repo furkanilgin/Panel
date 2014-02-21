@@ -16,37 +16,42 @@ class Datagrid{
 			}
 			$html .= '</tr>';
 			
-			foreach($this->dataset as $row){
-				$html .= '<tr>';
-				$columnIndex = 0;
-				foreach($this->columnList as $column){
-				
-					if($column->type == "data"){
-						$html .= $column->getDataColumnHtml($row[$columnIndex]);
-					}
-					else{
-						$html .= '<td>';
-						foreach($column->columnObjectList as $columnObject){
-							if(get_class($columnObject) == 'EditButton'){
-								$html .= $columnObject->getHtml();
-							}
-							else if(get_class($columnObject) == 'DeleteButton'){
-								$html .= $columnObject->getHtml();
-							}
+			if(isset($this->dataset)){
+				$rowIndex = 0;
+				foreach($this->dataset as $row){
+					$html .= '<tr>';
+					$columnIndex = 0;
+					foreach($this->columnList as $column){
+					
+						if($column->type == "data"){
+							$html .= $column->getDataColumnHtml($row[$columnIndex]);
 						}
-						$html .= '</td>';
+						else{
+							$html .= '<td>';
+							foreach($column->columnObjectList as $columnObject){
+								if(get_class($columnObject) == 'EditButton'){
+									$html .= $columnObject->getHtml();
+									$html .= $columnObject->getJS($this->dataset[$rowIndex][$columnIndex]);
+								}
+								else if(get_class($columnObject) == 'DeleteButton'){
+									$html .= $columnObject->getHtml();
+									$html .= $columnObject->getJS($this->dataset[$rowIndex][$columnIndex]);
+								}
+								else if(get_class($columnObject) == 'ImageLink'){
+									$html .= $columnObject->getHtml();
+									$html .= $columnObject->getJS($this->dataset[$rowIndex][$columnIndex]);
+								}
+							}
+							$html .= '</td>';
+						}
+						$columnIndex++;
 					}
-					$columnIndex++;
+					$html .= '</tr>';
+					$rowIndex++;
 				}
-				$html .= '</tr>';
 			}
 		}
 		$html .= '</table>';
-		
 		return $html;
-	}
-	
-	public function getJS(){
-	
 	}
 }

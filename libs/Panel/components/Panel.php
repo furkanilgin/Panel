@@ -4,7 +4,7 @@ class Panel{
 
 	public $property;
 	public $title;
-	public $fieldList;
+	public $panelItemList;
 
 	public function getHtml(){
 
@@ -73,6 +73,6 @@ class Panel{
 	}
 	
 	public function getJS(){
-	
+
 	}
 }
