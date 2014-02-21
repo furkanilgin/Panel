@@ -28,30 +28,32 @@ class Panel{
 						
 		if(isset($this->panelItemList)){
 			
-			$panelItemCount = 0;
-			$fieldCount = 0;
-			$datagridCount = 0;
+			$panelItemIndex = 0;
+			$fieldIndex = 0;
+			$datagridIndex = 0;
 			foreach($this->panelItemList as $panelItem){
-				if(get_class($panelItem) == 'Field'){
-					if($panelItemCount == 0){
+				if(get_class($panelItem) == 'Input'){
+					if($panelItemIndex == 0){
 						$html .= '<table border="0" cellpadding="0" cellspacing="0"  id="id-form" style="margin-bottom:20px;">';
 					}
 					$html .= '<tr>
-							<th>'.$panelItem->title.':</th>
+							<th>'.$panelItem->label.':</th>
 							<td>'.$panelItem->getHtml().'</td>
 						</tr>';
-					$fieldCount++;
+					$fieldIndex++;
 				}
 				if(get_class($panelItem) == 'Datagrid'){
-					if($panelItemCount != 0){
+					if($panelItemIndex != 0){
 						$html .= '</table>';
 					}
 					$html .= $panelItem->getHtml();
-					$datagridCount++;
+					$datagridIndex++;
+					$panelItemIndex = -1; // start again after add datagrid
+					$fieldIndex = 0;
 				}	
-				$panelItemCount++;
+				$panelItemIndex++;
 			}
-			if($fieldCount > 0 && $datagridCount == 0){
+			if($fieldIndex > 0){
 				$html .= '</table>';
 			}
 		}
