@@ -7,8 +7,22 @@
 		<script src="./libs/Panel/js/jquery/jquery-1.4.1.min.js" type="text/javascript"></script>
 		<script src="./libs/Panel/js/jquery/jquery.selectbox-0.5_style_2.js" type="text/javascript"></script>
 		<script src="./libs/Panel/js/jquery/jquery.filestyle.js" type="text/javascript"></script>
+		<script src="./libs/Panel/js/notification.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="./libs/Panel/css/notification.css" type="text/css" media="screen" title="default" />
 		<script type="text/javascript" src="./libs/Panel/ckeditor/ckeditor.js?t=B8DJ5M3"></script>
 		<script type="text/javascript" src="./libs/Panel/js/script.js"></script>
 	</head>
 	<body>
 		<form enctype="multipart/form-data" method="post">
+			<div style="top: -68px; z-index:15; width:50%; left:25%; text-align:center;" class="info message"></div>
+			<div style="top: -68px; z-index:15; width:50%; left:25%; text-align:center;" class="error message"></div>
+			<div style="top: -68px; z-index:15; width:50%; left:25%; text-align:center;" class="warning message"></div>
+			<div style="top: -68px; z-index:15; width:50%; left:25%; text-align:center;" class="success message"></div>
+			<div style="display:none;">
+				<ul id="trigger-list">
+					<li><a href="#" class="trigger info-trigger">Info</a></li>
+					<li><a href="#" class="trigger error-trigger">Error</a></li>
+					<li><a href="#" class="trigger warning-trigger">Warning</a></li>
+					<li><a href="#" id="success" class="trigger success-trigger">Success</a></li>
+				</ul>
+			</div>

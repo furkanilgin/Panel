@@ -23,4 +23,6 @@ $(document).ready(function() {
 					$('#menu1').click(function(){
 						location = '?page=page1';
 					});
-				});
+				}); $(document).ready(function(){
+	notify('success', 'Hata');
+ });
