@@ -9,11 +9,12 @@ class Button{
 	
 	public function getHtml(){
 		
-		$html .= '<button id="'.$this->id.'" name="'.$this->name.'" type="button" class="form-submit" />';
+		$html .= '<input type="button" id="'.$this->id.'" name="'.$this->name.'" class="form-submit" />';
 		
 		$js .= "<script>";
 		$js .= "$('#".$this->id."').click(function(){";
 		$js .= "$('form').append('<input id=\"action\" name=\"action\" type=\"hidden\" value=\"".$this->action."\"  />');";
+		$js .= "$('#isSubmitted').val('true');";
 		$js .= "$('form').submit();";
 		$js .= "$('#action').remove();";
 		$js .= "});";

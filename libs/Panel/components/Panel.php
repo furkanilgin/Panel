@@ -37,10 +37,15 @@ class Panel{
 					if($panelItemIndex == 0){
 						$html .= '<table border="0" cellpadding="0" cellspacing="0"  id="id-form" style="margin-bottom:20px;">';
 					}
-					$html .= '<tr>
-							<th>'.$panelItem->label.'</th>
-							<td>'.$panelItem->getHtml().'</td>
-						</tr>';
+					$html .= '<tr>';
+					if(get_class($panelItem) == 'Button'){
+						$html .= '<th>'.$panelItem->label.'</th>';
+					}
+					else{
+						$html .= '<th>'.$panelItem->label.':</th>';
+					}
+					$html .= '<td>'.$panelItem->getHtml().'</td>
+							</tr>';
 					$fieldIndex++;
 				}
 				if(get_class($panelItem) == 'Datagrid'){
@@ -77,5 +82,10 @@ class Panel{
 	
 	public function getJS(){
 
+		foreach($this->panelItemList as $panelItem){
+			$js .= $panelItem->getJS();
+		}
+		
+		return $js;
 	}
 }

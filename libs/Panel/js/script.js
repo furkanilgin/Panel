@@ -23,6 +23,15 @@ $(document).ready(function() {
 					$('#menu1').click(function(){
 						location = '?page=page1';
 					});
-				}); $(document).ready(function(){
-	notify('success', 'Hata');
- });
+				});$(document).ready(function(e){
+						$('form').submit(function(){
+							if($('#isSubmitted').val() == 'true'){
+								if($('#field1').val() == ''){
+									notify('error', 'Lütfen Field 1 alanını doldurunuz');
+									$('#isSubmitted').val('false');
+									return false;
+								}
+							}
+							
+						});
+				   });

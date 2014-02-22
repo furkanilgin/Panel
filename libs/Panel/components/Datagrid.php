@@ -54,4 +54,8 @@ class Datagrid{
 		$html .= '</table>';
 		return $html;
 	}
+	
+	public function getJS(){
+	
+	}
 }
