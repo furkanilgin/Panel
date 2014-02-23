@@ -8,10 +8,14 @@ class Input{
 	public $text;
 	public $property;
 	public $required;
+	public $type;
 
 	public function getHtml(){
 
-		$html = '<input id="'.$this->id.'" name="'.$this->name.'" type="text" class="inp-form" value="'.$this->text.'" />';
+		if(!isset($this->type)){
+			$this->type = "text";
+		}
+		$html = '<input id="'.$this->id.'" name="'.$this->name.'" type="'.$this->type.'" class="inp-form" value="'.$this->text.'" />';
 
 		return $html;
 	}
