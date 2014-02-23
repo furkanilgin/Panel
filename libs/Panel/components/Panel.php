@@ -81,9 +81,11 @@ class Panel{
 	}
 	
 	public function getJS(){
-
-		foreach($this->panelItemList as $panelItem){
-			$js .= $panelItem->getJS();
+		
+		if(isset($this->panelItemList)){
+			foreach($this->panelItemList as $panelItem){
+				$js .= $panelItem->getJS();
+			}
 		}
 		
 		return $js;
