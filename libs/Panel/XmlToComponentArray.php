@@ -102,6 +102,7 @@ class XmlToComponentArray{
 						$fileComponent->id = (string) $child["id"];
 						$fileComponent->name = (string) $child["name"];
 						$fileComponent->label = (string) $child["label"];
+						$fileComponent->required = (string) $child["required"];
 						$component->panelItemList[] = $fileComponent;
 					}
 					else if($child->getName() == "button"){
