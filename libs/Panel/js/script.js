@@ -8,7 +8,7 @@ $(document).ready(function() {
 		width : 300
 	});
 	
-	CKEDITOR.replaceAll();
+	//CKEDITOR.replaceAll();
 });$(document).ready(function(){
 					$('#account').click(function(){
 						location = '?page=account';

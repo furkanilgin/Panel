@@ -8,5 +8,5 @@ $(document).ready(function() {
 		width : 300
 	});
 	
-	CKEDITOR.replaceAll();
+	//CKEDITOR.replaceAll();
 });
