@@ -86,6 +86,7 @@ class XmlToComponentArray{
 						$inputComponent->text = $_POST[(string)$inputComponent->name];
 						$inputComponent->required = $child["required"];
 						$inputComponent->type = $child["type"];
+						$inputComponent->display = $child["display"];
 						$component->panelItemList[] = $inputComponent;
 					}
 					else if($child->getName() == "select"){
@@ -94,7 +95,7 @@ class XmlToComponentArray{
 						$selectComponent->name = (string) $child["name"];
 						$selectComponent->label = (string) $child["label"];
 						$selectComponent->change = (string) $child["change"];
-						$selectComponent->selectedItem = $_POST[(string)$selectComponent->id];
+						$selectComponent->selectedItem = $_POST[(string)$selectComponent->name];
 						$component->panelItemList[] = $selectComponent;
 					}
 					else if($child->getName() == "file"){
@@ -103,6 +104,9 @@ class XmlToComponentArray{
 						$fileComponent->name = (string) $child["name"];
 						$fileComponent->label = (string) $child["label"];
 						$fileComponent->required = (string) $child["required"];
+						if(!empty($_FILES[(string)$fileComponent->name]["name"])){
+							$fileComponent->filename = (string) (microtime(true)*10000)."-".$_FILES[(string)$fileComponent->name]["name"];
+						}
 						$component->panelItemList[] = $fileComponent;
 					}
 					else if($child->getName() == "button"){

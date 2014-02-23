@@ -9,6 +9,7 @@ class Input{
 	public $property;
 	public $required;
 	public $type;
+	public $display;
 
 	public function getHtml(){
 

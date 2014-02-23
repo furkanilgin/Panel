@@ -6,6 +6,7 @@ class File{
 	public $name;
 	public $label;
 	public $required;
+	public $filename;
 	
 	public function getHtml(){
 	
@@ -36,7 +37,7 @@ class File{
 	
 	public function upload($uploaddir){
 	
-		$uploadfile = '../../'.$uploaddir . basename($_FILES[$this->name]['name']);
+		$uploadfile = '../../'.$uploaddir . $this->filename;
 		if (!move_uploaded_file($_FILES[$this->name]['tmp_name'], $uploadfile)) {
 			Notification::error("Dosya kaydedilemedi!");
 			
