@@ -83,6 +83,7 @@ class XmlToComponentArray{
 						$inputComponent->label = $child["label"];
 						$inputComponent->text = $_POST[(string)$inputComponent->name];
 						$inputComponent->required = $child["required"];
+						$inputComponent->html = $child["html"];
 						$component->panelItemList[] = $inputComponent;
 					}
 					else if($child->getName() == "select"){

@@ -5,6 +5,7 @@ class Panel{
 	public $property;
 	public $title;
 	public $panelItemList;
+	public $html;
 
 	public function getHtml(){
 
@@ -62,6 +63,9 @@ class Panel{
 			if($fieldIndex > 0){
 				$html .= '</table>';
 			}
+		}
+		else{
+			$html .= $this->html;
 		}
 								
 		$html .= '</div>
