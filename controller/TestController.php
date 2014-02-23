@@ -26,9 +26,10 @@ class TestController{
 	}
 	
 	public function save(){
-	
-		$this->test->p_Panel->panelItemList[2]->upload("./upload/");
-		//echo $_FILES["field3"]["name"];
+		
+		if($this->test->p_Panel->panelItemList[2]->upload("./upload/") == "true"){
+			Notification::success("İşlem başarılı");
+		}
 	}
 	
 	public function selectChange(){

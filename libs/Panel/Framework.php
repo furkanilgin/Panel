@@ -1,5 +1,6 @@
 <?php
 require_once("./XmlToComponentArray.php");
+require_once("./Notification.php");
 
 class Framework{
 
@@ -84,7 +85,7 @@ class Framework{
 	}
 	
 	public function callAction($controller){
-	
+
 		if(!empty($_POST)){
 			$method = $_POST["action"];
 			$callStatement = '$controller->'.$method;

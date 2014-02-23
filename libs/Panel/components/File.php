@@ -21,7 +21,11 @@ class File{
 	
 		$uploadfile = '../../'.$uploaddir . basename($_FILES[$this->name]['name']);
 		if (!move_uploaded_file($_FILES[$this->name]['tmp_name'], $uploadfile)) {
-			//throw new Exception("Dosya kaydedilemedi!\n");
+			Notification::error("Dosya kaydedilemedi!");
+			
+			return false;
 		}
+		
+		return true;
 	}
 }
