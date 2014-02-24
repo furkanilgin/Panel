@@ -20,14 +20,16 @@ class Select{
 				$html .= '>'.$value.'</option>';
 			}
 			
-			$js .= '<script>';
-			$js .= '$(document).ready(function(){';
-			$js .= "$('#".$this->id."_container li').click(function(){";
-			$js .= "$('form').append('<input id=\"action\" name=\"action\" type=\"hidden\" value=\"".$this->change."\"  />');";
-			$js .= "$('form').submit();";
-			$js .= "$('#action').remove();";
-			$js .= "});});";
-			$js .= '</script>';
+			if(!empty($this->change)){
+				$js .= '<script>';
+				$js .= '$(document).ready(function(){';
+				$js .= "$('#".$this->id."_container li').click(function(){";
+				$js .= "$('form').append('<input id=\"action\" name=\"action\" type=\"hidden\" value=\"".$this->change."\"  />');";
+				$js .= "$('form').submit();";
+				$js .= "$('#action').remove();";
+				$js .= "});});";
+				$js .= '</script>';
+			}
 		}
 		else{
 			throw new Exception("Select items must be array");
