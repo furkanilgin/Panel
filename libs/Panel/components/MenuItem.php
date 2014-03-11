@@ -13,15 +13,17 @@ class MenuItem{
 	
 	public function getHtml(){
 	
+		$html = '';
+		
 		if($this->type == "account"){
 			$html .= '<div class="nav-divider">&nbsp;</div>
 					  <div class="showhide-account">
-						<img id="'.$this->id.'" src="./libs/panel/images/shared/nav/nav_myaccount.gif" width="93" height="14" />
+						<img id="'.$this->id.'" src="./libs/Panel/images/shared/nav/nav_myaccount.gif" width="93" height="14" />
 					  </div>';
 		}
 		else if($this->type == "logout"){
 			$html .= '<div class="nav-divider">&nbsp;</div>
-						<a id="'.$this->id.'"><img src="./libs/panel/images/shared/nav/nav_logout.gif" style="cursor:pointer;"/></a>';
+						<a id="'.$this->id.'"><img src="./libs/Panel/images/shared/nav/nav_logout.gif" style="cursor:pointer;"/></a>';
 		}
 		else if($this->type == "default"){
 			// href
@@ -55,6 +57,7 @@ class MenuItem{
 	
 	public function getJS(){
 	
+		$js = '';
 		if(isset($this->action) && $this->action != ""){
 			$js = "$(document).ready(function(){
 					$('#".$this->id."').click(function(){

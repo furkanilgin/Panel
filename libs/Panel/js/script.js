@@ -15,23 +15,20 @@ $(document).ready(function() {
 					});
 				});$(document).ready(function(){
 					$('#logout').click(function(){
-						$('form').append('<input id="action" name="action" type="hidden" value="logoutClick();"  />');
+						$('form').append('<input id="action" name="action" type="hidden" value="logout();"  />');
 						$('form').submit();
 						$('#action').remove();
 					});
 				});$(document).ready(function(){
-					$('#menu1').click(function(){
-						location = '?page=page1';
+					$('#anasayfa').click(function(){
+						location = '?page=anasayfa';
 					});
-				});$(document).ready(function(e){
-						$('form').submit(function(){
-							if($('#isSubmitted').val() == 'true'){
-								if($('#field1').val() == ''){
-									notify('error', 'Lütfen Field 1 alanını doldurunuz');
-									$('#isSubmitted').val('false');
-									return false;
-								}
-							}
-							
-						});
-				   });
+				});$(document).ready(function(){
+					$('#hakkimizda').click(function(){
+						location = '?page=hakkimizda';
+					});
+				});$(document).ready(function(){
+					$('#biz_kimiz').click(function(){
+						location = '?page=bizkimiz';
+					});
+				});

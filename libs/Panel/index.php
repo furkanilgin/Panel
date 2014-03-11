@@ -1,6 +1,10 @@
 <?php
-require_once("/html/header.html");
+require_once("./html/header.html");
 require_once("./Framework.php");
+
+if(!isset($_GET["page"])){
+	echo "<script>location='login';</script>";
+}
 
 $framework = new Framework();
 $requestedPageConfiguration = $framework->findRequestedPageConfiguration($_GET["page"]);

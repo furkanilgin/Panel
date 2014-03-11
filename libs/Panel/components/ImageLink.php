@@ -8,7 +8,7 @@ class ImageLink{
 	public function getHtml(){
 		
 		$this->id = 'imageLink_'.CreateRandom::rand();
-		$html = '<img id="'.$this->id.'" src="./libs/panel/icons/image.png" style="cursor: pointer;" height="20" />';
+		$html = '<img id="'.$this->id.'" src="./libs/Panel/icons/image.png" style="cursor: pointer;" height="20" />';
 		
 		return $html;
 	}

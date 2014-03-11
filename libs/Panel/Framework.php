@@ -2,6 +2,7 @@
 require_once("./XmlToComponentArray.php");
 require_once("./Notification.php");
 require_once("./Controller.php");
+require_once("../Database.php");
 
 class Framework{
 
@@ -112,6 +113,7 @@ class Framework{
 		$jsHeader = file_get_contents('./js/scriptHeader.js');
 		$jsFooter = file_get_contents('./js/scriptFooter.js');
 		
+		$jsContent = '';
 		if(!empty($componentArray)){
 			foreach($componentArray as $component){
 				$jsContent .= $component->getJS();

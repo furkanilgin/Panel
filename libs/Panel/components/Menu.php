@@ -31,7 +31,7 @@ class Menu{
 			}
 		}
 		// default buttons
-		$leftMenuItemCount = count($this->menuItemList) - $this->rightMenuItemCount;
+		$leftMenuItemCount = count($this->menuItemList) - $rightMenuItemCount;
 		if($leftMenuItemCount > 0){
 			$html .= '<div class="nav"><div class="table">';
 		}
@@ -53,6 +53,7 @@ class Menu{
 	
 	public function getJS(){
 	
+		$js = '';
 		foreach($this->menuItemList as $menuItem){
 			$js .= $menuItem->getJS();
 		}
