@@ -49,13 +49,14 @@ class Framework{
 		$controllerClassName = str_replace(".php", "", $requestedPageConfiguration["controller"]);
 		$modelClassName = str_replace(".php", "", $requestedPageConfiguration["model"]);
 		$controller = new $controllerClassName;
-		$controller->{strtolower($modelClassName)} = new $modelClassName;
+		// $controller->{strtolower($modelClassName)} = new $modelClassName;
+		$controller->model = new $modelClassName;
 		
 		return $controller; 
 	}
 	
 	public function setFromComponentArrayToModel($componentArray, $controller){
-	
+
 		if(!empty($componentArray)){
 			foreach($componentArray as $component){
 				$tmp_val = str_replace("#{", "", $component->property);
