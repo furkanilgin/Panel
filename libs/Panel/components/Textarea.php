@@ -25,16 +25,24 @@ class Textarea{
 		if($this->required == "true"){
 			$js = "$(document).ready(function(e){
 						$('form').submit(function(){
-							if($('#isSubmitted').val() == 'true'){
-								if($('#".$this->id."').val() == ''){
-									notify('error', 'Lütfen ".$this->label." alanını doldurunuz');
-									$('#isSubmitted').val('false');
-									return false;
-								}
-							}
+							if($('#isSubmitted').val() == 'true'){";
 							
-						});
-				   });";
+			if($this->editor == "yes"){
+				$js .= "if($('table.cke_editor iframe').contents().find('body').html() == '' || 
+								$('table.cke_editor iframe').contents().find('body').html() == '<p><br></p>'){";
+			}
+			else{
+				$js .= "if($('#".$this->id."').val() == ''){";
+			}
+			
+			$js .= "	notify('error', 'Lütfen ".$this->label." alanını doldurunuz');
+						$('#isSubmitted').val('false');
+						return false;
+					}
+				}
+				
+			});
+	   });";
 		}
 		
 		return $js;
