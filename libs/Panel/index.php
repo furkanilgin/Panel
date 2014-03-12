@@ -1,6 +1,7 @@
 <?php
-require_once("./html/header.html");
-require_once("./Framework.php");
+ob_start();
+require_once("html/header.html");
+require_once("Framework.php");
 
 if(!isset($_GET["page"])){
 	echo "<script>location='login';</script>";
@@ -21,5 +22,6 @@ $js = $framework->renderJS($componentArray);
 echo $html;
 file_put_contents("./js/script.js", $js);
 
-require_once("/html/footer.html");
+require_once("html/footer.html");
+ob_flush();
 ?>
