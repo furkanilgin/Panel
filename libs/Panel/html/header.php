@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>TK Show Team - Yönetim Paneli</title>
+		<title><?php echo $requestedPageConfiguration["title"]; ?></title>
 		<link rel="stylesheet" href="./libs/Panel/css/screen.css" type="text/css" media="screen" title="default" />
 		<script src="./libs/Panel/js/jquery/jquery-1.4.1.min.js" type="text/javascript"></script>
 		<script src="./libs/Panel/js/jquery/jquery.selectbox-0.5_style_2.js" type="text/javascript"></script>

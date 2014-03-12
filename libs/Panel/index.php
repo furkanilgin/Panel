@@ -1,6 +1,6 @@
 <?php
 ob_start();
-require_once("html/header.html");
+
 require_once("Framework.php");
 
 if(!isset($_GET["page"])){
@@ -16,12 +16,11 @@ $controller = $framework->setFromComponentArrayToModel($componentArray, $control
 $framework->callLoadFunction($controller);
 $componentArray = $framework->setFromModelToComponentArray($componentArray, $controller);
 $framework->callAction($controller);
-$html = $framework->renderHtml($componentArray);
+$html = $framework->renderHtml($componentArray, $requestedPageConfiguration);
 $js = $framework->renderJS($componentArray);
 
 echo $html;
 file_put_contents("./js/script.js", $js);
 
-require_once("html/footer.html");
 ob_flush();
 ?>

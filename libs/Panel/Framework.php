@@ -17,11 +17,14 @@ class Framework{
 				if($pageDefinitionCount > 0){
 					throw new Exception('There must be only one page definition with same name in page-configuration.xml');
 				}
+				if(empty($pageNode["title"])){
+					$pageNode["title"] = $root["title"];
+				}
 				$requestedPageConfiguration = $pageNode;
 				$pageDefinitionCount++;
 			}
 		}
-		
+
 		return $requestedPageConfiguration;
 	}
 	
@@ -96,7 +99,9 @@ class Framework{
 		}
 	}
 
-	public function renderHtml($componentArray){
+	public function renderHtml($componentArray, $requestedPageConfiguration){
+		
+		require_once("html/header.php");
 		
 		/** Convert to html */
 		$html = '';
@@ -105,6 +110,8 @@ class Framework{
 				$html .= $component->getHtml();
 			}
 		}
+		
+		require_once("html/footer.html");
 
 		return $html;
 	}
