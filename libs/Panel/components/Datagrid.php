@@ -2,6 +2,7 @@
 
 class Datagrid{
 
+	public $id;
 	public $columnList;
 	public $dataset;
 
@@ -29,16 +30,9 @@ class Datagrid{
 						else{
 							$html .= '<td>';
 							foreach($column->columnObjectList as $columnObject){
-								if(get_class($columnObject) == 'EditButton'){
-									$html .= $columnObject->getHtml();
-									$html .= $columnObject->getJS($this->dataset[$rowIndex][$columnIndex]);
-								}
-								else if(get_class($columnObject) == 'DeleteButton'){
-									$html .= $columnObject->getHtml();
-									$html .= $columnObject->getJS($this->dataset[$rowIndex][$columnIndex]);
-								}
-								else if(get_class($columnObject) == 'ImageLink'){
-									$html .= $columnObject->getHtml();
+								$html .= $columnObject->getHtml();
+								if(get_class($columnObject) == 'ImageLink'){
+									
 									$html .= $columnObject->getJS($this->dataset[$rowIndex][$columnIndex]);
 								}
 							}

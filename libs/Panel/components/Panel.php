@@ -37,25 +37,25 @@ class Panel{
 				// input display
 				$inputDisplay = '';
 				if(get_class($panelItem) == 'Input' && $panelItem->display == "false"){
-					$inputDisplay = "display:none";
+					$inputDisplay = "display:none;";
 				}
 				//
 				if(get_class($panelItem) == 'Input' || get_class($panelItem) == 'Select' 
 						|| get_class($panelItem) == 'File' || get_class($panelItem) == 'Button'
-						|| get_class($panelItem) == 'Textarea'){
+						|| get_class($panelItem) == 'Textarea' || get_class($panelItem) == 'OutputText'){
 					if($panelItemIndex == 0){
 						$html .= '<table border="0" cellpadding="0" cellspacing="0"  id="id-form" style="margin-bottom:20px;">';
 					}
 
 					$html .= '<tr>';
-					if(get_class($panelItem) == 'Button'){
-						$html .= '<th valign="top">'.$panelItem->label.'</th>';
+					if(get_class($panelItem) != 'Button'){
+						$html .= '<th valign="top" style="'.$inputDisplay.'">'.$panelItem->label.':</th>';
+						$html .= '<td width="800" style="'.$inputDisplay.'">'.$panelItem->getHtml().'</td>';
 					}
 					else{
-						$html .= '<th valign="top" style="'.$inputDisplay.'">'.$panelItem->label.':</th>';
+						$html .= '<td width="800" colspan="2">'.$panelItem->getHtml().'</td>';
 					}
-					$html .= '<td style="'.$inputDisplay.'">'.$panelItem->getHtml().'</td>
-							</tr>';
+					$html .= '</tr>';
 					$fieldIndex++;
 				}
 				if(get_class($panelItem) == 'Datagrid'){

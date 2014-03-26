@@ -14,14 +14,22 @@ class ImageLink{
 	}
 	
 	public function getJS($link){
+		
 
-		$js = '<script>
-				$(document).ready(function(){
-					$("#'.$this->id.'").click(function(){
-						window.open("'.$link.'");
-					});
-				});
-				</script>';
+		$js = "<script>
+				$(document).ready(function(){";
+				
+		if(!empty($link)){
+			$js .= "$('#".$this->id."').click(function(){
+						window.open('".$link."');
+					});";
+		}
+		else{
+			$js .= "$('#".$this->id."').css('display', 'none');";
+		}
+				
+		$js .= "});
+				</script>";
 		
 		return $js;
 	}

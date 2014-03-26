@@ -9,7 +9,9 @@ require_once("./components/Datagrid.php");
 require_once("./components/Column.php");
 require_once("./components/EditButton.php");
 require_once("./components/DeleteButton.php");
+require_once("./components/ColumnButton.php");
 require_once("./components/ImageLink.php");
+require_once("./components/OutputText.php");
 require_once("./components/Input.php");
 require_once("./components/Select.php");
 require_once("./components/File.php");
@@ -78,6 +80,14 @@ class XmlToComponentArray{
 				$component->title = $pageNode["title"];
 				$component->html = $pageNode["html"];
 				foreach($pageNode->children() as $child){
+					if($child->getName() == "outputText"){
+						$outputTextComponent = new OutputText();
+						$outputTextComponent->id = $child["id"];
+						$outputTextComponent->name = $child["name"];
+						$outputTextComponent->label = $child["label"];
+						$outputTextComponent->text = $child["text"];
+						$component->panelItemList[] = $outputTextComponent;
+					}
 					if($child->getName() == "input"){
 						$inputComponent = new Input();
 						$inputComponent->id = $child["id"];
@@ -104,8 +114,22 @@ class XmlToComponentArray{
 						$fileComponent->name = (string) $child["name"];
 						$fileComponent->label = (string) $child["label"];
 						$fileComponent->required = (string) $child["required"];
+						$fileComponent->uploadAction = (string) $child["uploadAction"];
+						$fileComponent->imageHeight = (string) $child["imageHeight"];
+						$fileComponent->imageWidth = (string) $child["imageWidth"];
+						$fileComponent->cropAction = (string) $child["cropAction"];
+						$fileComponent->deleteAction = (string) $child["deleteAction"];
+						$fileComponent->uploaddir = (string) $child["uploaddir"];
+						
 						if(!empty($_FILES[(string)$fileComponent->name]["name"])){
 							$fileComponent->filename = (string) (microtime(true)*10000)."-".$_FILES[(string)$fileComponent->name]["name"];
+						}
+						else{
+							if($_POST["action"] == $fileComponent->cropAction ||
+									$_POST["action"] == $fileComponent->deleteAction){
+								$fileComponent->filename = $_SESSION[$fileComponent->id]["filename"];
+								$fileComponent->uploaddir = $_SESSION[$fileComponent->id]["uploaddir"];
+							}
 						}
 						$component->panelItemList[] = $fileComponent;
 					}
@@ -114,7 +138,9 @@ class XmlToComponentArray{
 						$buttonComponent->id = $child["id"];
 						$buttonComponent->name = $child["name"];
 						$buttonComponent->text = $child["text"];
+						$buttonComponent->style = $child["style"];
 						$buttonComponent->action = $child["action"];
+						$buttonComponent->href = $child["href"];
 						$component->panelItemList[] = $buttonComponent;
 					}
 					else if($child->getName() == "textarea"){
@@ -130,6 +156,7 @@ class XmlToComponentArray{
 					else if($child->getName() == "datagrid"){
 						foreach($pageNode->datagrid as $datagrid){
 							$datagridComponent = new Datagrid();
+							$datagridComponent->id = $datagrid["id"];
 							$datagridComponent->property = $datagrid["property"];
 							foreach($datagrid->column as $column){
 								$columnComponent = new Column();
@@ -137,6 +164,13 @@ class XmlToComponentArray{
 								$columnComponent->width = $column["width"];
 								$columnComponent->type = $column["type"];
 								$columnComponent->property = $column["property"];
+								foreach($column->columnButton as $columnButton){
+									$columnObject = new ColumnButton();
+									$columnObject->id = $columnButton["id"];
+									$columnObject->title = $columnButton["title"];
+									$columnObject->action = $columnButton["action"];
+									$columnComponent->columnObjectList[] = $columnObject;
+								}
 								foreach($column->editButton as $editButton){
 									$columnObject = new EditButton();
 									$columnObject->id = $editButton["id"];
@@ -161,6 +195,12 @@ class XmlToComponentArray{
 							$component->panelItemList[] = $datagridComponent;
 						}
 					}
+					
+					foreach($component->panelItemList as $panelItem){
+						$key = (string) $panelItem->id;
+						$newPanelItemList[$key] = $panelItem;
+					}
+					$component->panelItemList = $newPanelItemList;
 				}
 				foreach($pageNode->field as $field){
 					$fieldComponent = new Field();

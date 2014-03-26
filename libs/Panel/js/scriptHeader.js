@@ -7,6 +7,6 @@ $(document).ready(function() {
 		imagewidth : 78,
 		width : 300
 	});
-	
+
 	//CKEDITOR.replaceAll();
 });

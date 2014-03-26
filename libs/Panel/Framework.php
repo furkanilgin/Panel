@@ -1,6 +1,7 @@
 <?php
 require_once("./XmlToComponentArray.php");
 require_once("./Notification.php");
+require_once("../ImageUtils.php");
 require_once("./Controller.php");
 require_once("../Database.php");
 
@@ -99,24 +100,20 @@ class Framework{
 		}
 	}
 
-	public function renderHtml($componentArray, $requestedPageConfiguration){
-		
-		require_once("html/header.php");
+	public function renderHtml($componentArray){
 		
 		/** Convert to html */
 		$html = '';
 		if(!empty($componentArray)){
-			foreach($componentArray as $component){ 
+			foreach($componentArray as $component){
 				$html .= $component->getHtml();
 			}
 		}
 		
-		require_once("html/footer.html");
-
 		return $html;
 	}
 	
-	public function renderJS($componentArray){
+	public function renderJS($componentArray, $requestedPageConfiguration){
 	
 		$jsHeader = file_get_contents('./js/scriptHeader.js');
 		$jsFooter = file_get_contents('./js/scriptFooter.js');
@@ -127,6 +124,9 @@ class Framework{
 				$jsContent .= $component->getJS();
 			}
 		}
+		
+		/** set page title */
+		$jsContent .= "$(document).ready(function(){ $(document).attr('title', '".$requestedPageConfiguration["title"]."'); });";
 		
 		return $jsHeader.$jsContent.$jsFooter;
 	}

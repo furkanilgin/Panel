@@ -7,7 +7,7 @@ $(document).ready(function() {
 		imagewidth : 78,
 		width : 300
 	});
-	
+
 	//CKEDITOR.replaceAll();
 });$(document).ready(function(){
 					$('#account').click(function(){
@@ -20,15 +20,34 @@ $(document).ready(function() {
 						$('#action').remove();
 					});
 				});$(document).ready(function(){
-					$('#anasayfa').click(function(){
-						location = '?page=anasayfa';
-					});
-				});$(document).ready(function(){
 					$('#hakkimizda').click(function(){
 						location = '?page=hakkimizda';
 					});
 				});$(document).ready(function(){
-					$('#biz_kimiz').click(function(){
-						location = '?page=bizkimiz';
+					$('#hizmetlerimiz').click(function(){
+						location = '?page=hizmetlerimiz';
 					});
-				});
+				});$(document).ready(function(){
+					$('#blog').click(function(){
+						location = '?page=blog';
+					});
+				});$(document).ready(function(){
+					$('#multimedya').click(function(){
+						location = '?page=multimedya';
+					});
+				});$(document).ready(function(){
+					$('#iletisim').click(function(){
+						location = '?page=iletisim';
+					});
+				});$(document).ready(function(e){
+						$('form').submit(function(){
+							if($('#isSubmitted').val() == 'true'){
+								if($('#file_name_display').html() == ''){
+									notify('error', 'Lütfen Fotoğraf alanını doldurunuz');
+									$('#isSubmitted').val('false');
+									return false;
+								}
+							}
+							
+						});
+				   });$(document).ready(function(){ $(document).attr('title', 'Osmani - Yönetim Paneli'); });
