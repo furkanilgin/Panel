@@ -17,6 +17,7 @@ require_once("./components/Select.php");
 require_once("./components/File.php");
 require_once("./components/Button.php");
 require_once("./components/Textarea.php");
+require_once("./components/Link.php");
 
 class XmlToComponentArray{
 
@@ -194,6 +195,15 @@ class XmlToComponentArray{
 							}
 							$component->panelItemList[] = $datagridComponent;
 						}
+					}
+					else if($child->getName() == "link"){
+						$linkComponent = new Link();
+						$linkComponent->id = $child["id"];
+						$linkComponent->name = $child["name"];
+						$linkComponent->href = $child["href"];
+						$linkComponent->text = $child["text"];
+						$linkComponent->label = $child["label"];
+						$component->panelItemList[] = $linkComponent;
 					}
 					
 					foreach($component->panelItemList as $panelItem){

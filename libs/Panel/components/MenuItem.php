@@ -17,13 +17,21 @@ class MenuItem{
 		
 		if($this->type == "account"){
 			$html .= '<div class="nav-divider">&nbsp;</div>
-					  <div class="showhide-account">
-						<img id="'.$this->id.'" src="./libs/Panel/images/shared/nav/nav_myaccount.gif" width="93" height="14" />
+					  <div id="'.$this->id.'" class="showhide-account">
+						<div style="float:left;">
+							<img src="./libs/Panel/images/shared/nav/nav_myaccount.gif" />
+						</div>
+						<div style="font-family:Tahoma; font-size:13px; color:#fff; font-weight:bold; float:left; padding-left:3px;">Hesabım</div>
 					  </div>';
 		}
 		else if($this->type == "logout"){
 			$html .= '<div class="nav-divider">&nbsp;</div>
-						<a id="'.$this->id.'"><img src="./libs/Panel/images/shared/nav/nav_logout.gif" style="cursor:pointer;"/></a>';
+					  <div class="showhide-account" id="'.$this->id.'">
+						<div style="float:left; margin-top:2px;">
+							<img src="./libs/Panel/images/shared/nav/nav_logout.gif" />
+						</div>
+						<div style="font-family:Tahoma; font-size:13px; color:#fff; font-weight:bold; float:left; padding-left:3px;">Çıkış</div>
+					  </div>';
 		}
 		else if($this->type == "default"){
 			// href

@@ -42,7 +42,8 @@ class Panel{
 				//
 				if(get_class($panelItem) == 'Input' || get_class($panelItem) == 'Select' 
 						|| get_class($panelItem) == 'File' || get_class($panelItem) == 'Button'
-						|| get_class($panelItem) == 'Textarea' || get_class($panelItem) == 'OutputText'){
+						|| get_class($panelItem) == 'Textarea' || get_class($panelItem) == 'OutputText'
+						|| get_class($panelItem) == 'Link'){
 					if($panelItemIndex == 0){
 						$html .= '<table border="0" cellpadding="0" cellspacing="0"  id="id-form" style="margin-bottom:20px;">';
 					}

@@ -15,7 +15,7 @@ class Notification{
 		echo "<script>notify('error', '".$message."');</script>";
 	}
 	public static function success($message){
-	
+
 		echo "<script>notify('success', '".$message."');</script>";
 	}
 }

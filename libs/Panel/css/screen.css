@@ -955,7 +955,7 @@ Copyright (c) 2005-2007 Stu Nicholls. All rights reserved. This stylesheet and t
 	float: left;
 	height: 37px;
 	line-height: 35px;
-	padding: 0 20px 0 20px;
+	padding: 0 15px 0 15px;
 	text-decoration: none;
 	white-space: nowrap;
 	}
@@ -988,7 +988,7 @@ Copyright (c) 2005-2007 Stu Nicholls. All rights reserved. This stylesheet and t
 	cursor: pointer;
 	display: block;
 	float: left;
-	padding: 0 20px 0 10px;
+	padding: 0 15px 0 5px;
 	}
 .nav .select_sub	{
 	display: none;

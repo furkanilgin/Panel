@@ -32,22 +32,11 @@ $(document).ready(function() {
 						location = '?page=blog';
 					});
 				});$(document).ready(function(){
-					$('#multimedya').click(function(){
-						location = '?page=multimedya';
-					});
-				});$(document).ready(function(){
 					$('#iletisim').click(function(){
 						location = '?page=iletisim';
 					});
-				});$(document).ready(function(e){
-						$('form').submit(function(){
-							if($('#isSubmitted').val() == 'true'){
-								if($('#file_name_display').html() == ''){
-									notify('error', 'Lütfen Fotoğraf alanını doldurunuz');
-									$('#isSubmitted').val('false');
-									return false;
-								}
-							}
-							
-						});
-				   });$(document).ready(function(){ $(document).attr('title', 'Osmani - Yönetim Paneli'); });
+				});$(document).ready(function(){
+					$('#insan_kaynaklari').click(function(){
+						location = '?page=insan_kaynaklari';
+					});
+				});$(document).ready(function(){ $(document).attr('title', 'Osmani - Yönetim Paneli'); });
